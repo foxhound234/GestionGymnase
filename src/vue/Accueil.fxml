@@ -12,7 +12,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Sport">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#HandleAjouterSportSalle" text="AjouterSportSalle" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAjoutSport" text="AjouterSport" />
             </items>
           </Menu>

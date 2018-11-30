@@ -20,5 +20,12 @@ public class Sport {
         this.NomSport = NomSport;
     }
 
+    public Sport() {
+    }
+
+    public Sport(String NomSport) {
+        this.NomSport = NomSport;
+    }
+
      
 }

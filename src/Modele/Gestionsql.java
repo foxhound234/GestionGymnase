@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sql.GestionBdd;
 
 /**
@@ -31,6 +33,59 @@ public class Gestionsql {
         {
             System.out.println("Erreur requete3 " + e.getMessage());
         }
-    }        
+    }
+    
+     public static ObservableList<Sport> getLesSports()
+    {
+        Connection conn;
+        Statement stmt1;
+        Sport sport;
+        ObservableList<Sport> lesSports = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "select * from sport";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+                sport= new Sport(rs.getString("nomSport"));
+               lesSports.add(sport);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+        return lesSports;
+    }
+      public static ObservableList<Salle> getLesSalles()
+    {
+        Connection conn;
+        Statement stmt1;
+        Salle salle;
+        ObservableList<Salle> lesSalles = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "select * from salle";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+                salle= new Salle(rs.getString("refSalle"),rs.getString("typeRevetement"),rs.getInt("surface"));
+               lesSalles.add(salle);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+        return lesSalles;
+    }
     }
 

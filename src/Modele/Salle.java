@@ -10,8 +10,8 @@ package Modele;
  * @author Rabelais
  */
 public class Salle {
-      private String refsalle,surface,typerevement;
-
+      private String refsalle,typerevement;
+        private int surface;
     public String getRefsalle() {
         return refsalle;
     }
@@ -20,20 +20,29 @@ public class Salle {
         this.refsalle = refsalle;
     }
 
-    public String getSurface() {
+    public int getSurface() {
         return surface;
     }
 
-    public void setSurface(String surface) {
+    public void setSurface(int surface) {
         this.surface = surface;
     }
-
+    
     public String getTyperevement() {
         return typerevement;
     }
 
     public void setTyperevement(String typerevement) {
         this.typerevement = typerevement;
+    }
+
+    public Salle(String refsalle, String typerevement, int surface) {
+        this.refsalle = refsalle;
+        this.typerevement = typerevement;
+        this.surface = surface;
+    }
+    
+    public Salle() {
     }
       
 }

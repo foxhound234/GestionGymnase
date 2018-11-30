@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -27,9 +28,10 @@ public class AjoutSportSalleController implements Initializable {
     ComboBox cmb_ChoixSalle;
                 @FXML
     ComboBox cmb_ChoixSport;
-    
-    
-    
+    Salle Unesalle;
+    Sport UnSport;
+     private Stage dialogstage;
+        private boolean okClick=false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,8 +40,44 @@ public class AjoutSportSalleController implements Initializable {
         cmb_ChoixSport.setItems(lesSports);
         
         cmb_ChoixSalle.setItems(lesSalles);
-        
-        
+       
     }    
     
+            public boolean isOkclick()
+    {
+       return  okClick;
+    }
+    public void handleOk()
+    {
+      if(isInputValid())
+      {
+          Unesalle =(Salle) cmb_ChoixSalle.getSelectionModel().getSelectedItem();
+          UnSport=(Sport) cmb_ChoixSport.getSelectionModel().getSelectedItem();
+          
+          okClick=true;
+          dialogstage.close();
+      }
+    }
+     private boolean isInputValid() {
+        String messageErreur="";
+        boolean retour=true;
+    if(cmb_ChoixSalle.getSelectionModel().getSelectedItem()==null)
+    {
+        messageErreur="Sport invalide";
+    }
+    if(cmb_ChoixSalle.getSelectionModel().getSelectedItem()==null)
+    {
+        messageErreur="Salle invalide";
+    }
+    if(messageErreur.length()>0)
+    {
+          Alert al = new Alert(Alert.AlertType.INFORMATION);
+        al.setTitle("INSERTION REUSSIE");
+        al.setHeaderText("une insertion et deux maj effectuées");
+        al.setContentText(messageErreur);
+        al.showAndWait();
+    retour=false;
+    }
+ return  retour;
+    }
 }

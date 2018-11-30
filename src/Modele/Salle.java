@@ -44,5 +44,9 @@ public class Salle {
     
     public Salle() {
     }
-      
+        @Override
+    public String toString()
+    {
+        return String.valueOf(refsalle);
+    }
 }

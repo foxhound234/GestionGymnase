@@ -26,6 +26,10 @@ public class Sport {
     public Sport(String NomSport) {
         this.NomSport = NomSport;
     }
-
+    @Override
+    public String toString()
+    {
+        return String.valueOf(NomSport);
+    }
      
 }

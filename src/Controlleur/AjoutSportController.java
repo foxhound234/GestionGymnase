@@ -11,9 +11,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.Dialogs;
 /**
  * FXML Controller class
  *
@@ -23,12 +23,14 @@ public class AjoutSportController implements Initializable {
      private Stage dialogstage;
             @FXML
     private TextField txtSport;
-    private   Sport sport=new Sport();
-    private  Gestionsql gestions=new Gestionsql();
+         @FXML 
+    private final  Sport sport=new Sport();
+    private final  Gestionsql gestions=new Gestionsql();
     
         private boolean okClick=false;
     /**
      * Initializes the controller class.
+     * @param url
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,12 +40,12 @@ public class AjoutSportController implements Initializable {
     {
        return  okClick;
     }
-    private void handleOk()
+    public void handleOk()
     {
       if(isInputValid())
       {
           sport.setNomSport(txtSport.getText());
-          
+          gestions.insererSport(sport);
           okClick=true;
           dialogstage.close();
       }
@@ -59,7 +61,11 @@ public class AjoutSportController implements Initializable {
     }
     if(messageErreur.length()>0)
     {
-      Dialogs.showErrorDialog(dialogstage,messageErreur,"SVP corrigez le champ invalide","champ invalide");
+          Alert al = new Alert(Alert.AlertType.INFORMATION);
+        al.setTitle("INSERTION REUSSIE");
+        al.setHeaderText("une insertion et deux maj effectuées");
+        al.setContentText(messageErreur);
+        al.showAndWait();
     retour=false;
     }
  return  retour;

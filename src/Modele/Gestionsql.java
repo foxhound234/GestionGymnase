@@ -24,10 +24,9 @@ public class Gestionsql {
          try
         {
             // On prévoit 2 connexions à la base
-            stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
-  
-            String req = "Insert into sport(`nomSport) values ("+unsport.getNomSport()+")";
-  ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1, req);
+              stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+                String req="INSERT INTO sport(nomSport) VALUES ('"+unsport.getNomSport()+"')";
+                int nb1 = GestionBdd.envoiRequeteLID(stmt1, req);
         }
         catch(Exception e)
         {

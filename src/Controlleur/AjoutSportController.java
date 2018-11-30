@@ -11,8 +11,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputEvent;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -20,34 +22,36 @@ import javafx.stage.Stage;
  * @author Rabelais
  */
 public class AjoutSportController implements Initializable {
-     private Stage dialogstage;
             @FXML
     private TextField txtSport;
          @FXML 
-    private final  Sport sport=new Sport();
-    private final  Gestionsql gestions=new Gestionsql();
+    private   Sport sport=new Sport();
+    private  Gestionsql gestions=new Gestionsql();
     
         private boolean okClick=false;
     /**
      * Initializes the controller class.
      * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
         public boolean isOkclick()
     {
        return  okClick;
     }
-    public void handleOk()
+        
+  @FXML  public void handleOk(InputEvent e)
     {
       if(isInputValid())
       {
           sport.setNomSport(txtSport.getText());
           gestions.insererSport(sport);
           okClick=true;
-          dialogstage.close();
+          final Node source = (Node) e.getSource();
+          final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
       }
     }
  

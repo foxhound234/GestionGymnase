@@ -33,7 +33,20 @@ public class Gestionsql {
             System.out.println("Erreur requete3 " + e.getMessage());
         }
     }
-    
+    public void insererAccueilir(String nomSport,String refSalle)
+    {
+        try
+        {
+            // On prévoit 2 connexions à la base
+              stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+                String req="INSERT INTO accueillir(refSalle,nomSportAutorise) VALUES ('"+refSalle+"','"+nomSport+"')";
+                int nb1 = GestionBdd.envoiRequeteLID(stmt1, req);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Erreur requete3 " + e.getMessage());
+        }   
+    }
      public static ObservableList<Sport> getLesSports()
     {
         Connection conn;

@@ -30,9 +30,13 @@ public class AjoutSportSalleController implements Initializable {
     ComboBox cmb_ChoixSport;
     Salle Unesalle;
     Sport UnSport;
+    Gestionsql sql=new Gestionsql();
      private Stage dialogstage;
-        private boolean okClick=false;
-    
+     private boolean okClick=false;
+     @FXML private javafx.scene.control.Button ButtonAjout;
+        
+        
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          ObservableList<Sport> lesSports = Gestionsql.getLesSports();
@@ -43,7 +47,7 @@ public class AjoutSportSalleController implements Initializable {
        
     }    
     
-            public boolean isOkclick()
+      public boolean isOkclick()
     {
        return  okClick;
     }
@@ -53,9 +57,11 @@ public class AjoutSportSalleController implements Initializable {
       {
           Unesalle =(Salle) cmb_ChoixSalle.getSelectionModel().getSelectedItem();
           UnSport=(Sport) cmb_ChoixSport.getSelectionModel().getSelectedItem();
-          
+          sql.insererAccueilir(UnSport.getNomSport(),Unesalle.getRefsalle());
           okClick=true;
-          dialogstage.close();
+             Stage stage = (Stage) ButtonAjout.getScene().getWindow();
+    // do what you have to do
+    stage.close();
       }
     }
      private boolean isInputValid() {

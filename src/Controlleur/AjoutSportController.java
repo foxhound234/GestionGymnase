@@ -25,10 +25,11 @@ public class AjoutSportController implements Initializable {
             @FXML
     private TextField txtSport;
          @FXML 
-    private   Sport sport=new Sport();
-    private  Gestionsql gestions=new Gestionsql();
-    
-        private boolean okClick=false;
+    private final   Sport sport=new Sport();
+    private final  Gestionsql gestions=new Gestionsql();
+    private boolean okClick=false;
+     @FXML private javafx.scene.control.Button ButtonAjout;
+     
     /**
      * Initializes the controller class.
      * @param url
@@ -42,16 +43,16 @@ public class AjoutSportController implements Initializable {
        return  okClick;
     }
         
-  @FXML  public void handleOk(InputEvent e)
+  @FXML  public void handleOk()
     {
       if(isInputValid())
       {
           sport.setNomSport(txtSport.getText());
           gestions.insererSport(sport);
           okClick=true;
-          final Node source = (Node) e.getSource();
-          final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+            Stage stage = (Stage) ButtonAjout.getScene().getWindow();
+    // do what you have to do
+    stage.close();
       }
     }
  

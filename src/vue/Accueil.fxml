@@ -22,6 +22,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Associations">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#HandleAjouterSportAssociations" text="AjouterUnSport" />
               <MenuItem mnemonicParsing="false" onAction="#HandleAjouterAssociations" text="Ajouter" />
             </items>
           </Menu>

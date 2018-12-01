@@ -11,43 +11,38 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Rabelais
+ * @author morga
  */
-public class AjoutSportSalleController implements Initializable {
-
+public class AjoutSportAssoController implements Initializable {
+        @FXML
+    ComboBox cmb_ChoixAssociation;
+                @FXML
+    ComboBox cmb_ChoixSport;
+    Association UneAssocation;
+    Sport UnSport;
+    Gestionsql sql=new Gestionsql();
+      private boolean okClick=false;
+     @FXML private javafx.scene.control.Button ButtonAjout;
     /**
      * Initializes the controller class.
      */
-        @FXML
-    ComboBox cmb_ChoixSalle;
-                @FXML
-    ComboBox cmb_ChoixSport;
-    Salle Unesalle;
-    Sport UnSport;
-    Gestionsql sql=new Gestionsql();
-     private Stage dialogstage;
-     private boolean okClick=false;
-     @FXML private javafx.scene.control.Button ButtonAjout;
-        
-        
-        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          ObservableList<Sport> lesSports = Gestionsql.getLesSports();
-          ObservableList<Salle> lesSalles= Gestionsql.getLesSalles();
+          ObservableList<Association>  lesAssociations= Gestionsql.getLesAssociations();
         cmb_ChoixSport.setItems(lesSports);
         
-        cmb_ChoixSalle.setItems(lesSalles);
+        cmb_ChoixAssociation.setItems(lesAssociations);
        
     }    
-    
-      public boolean isOkclick()
+       public boolean isOkclick()
     {
        return  okClick;
     }
@@ -55,9 +50,9 @@ public class AjoutSportSalleController implements Initializable {
     {
       if(isInputValid())
       {
-          Unesalle =(Salle) cmb_ChoixSalle.getSelectionModel().getSelectedItem();
+          UneAssocation =(Association) cmb_ChoixAssociation.getSelectionModel().getSelectedItem();
           UnSport=(Sport) cmb_ChoixSport.getSelectionModel().getSelectedItem();
-          sql.insererAccueilir(UnSport.getNomSport(),Unesalle.getRefsalle());
+          sql.insererAccueilir(UnSport.getNomSport(),UneAssocation.getRefAsso());
           okClick=true;
              Stage stage = (Stage) ButtonAjout.getScene().getWindow();
     // do what you have to do
@@ -67,19 +62,19 @@ public class AjoutSportSalleController implements Initializable {
      private boolean isInputValid() {
         String messageErreur="";
         boolean retour=true;
-    if(cmb_ChoixSport.getSelectionModel().getSelectedItem()==null)
+    if(cmb_ChoixAssociation.getSelectionModel().getSelectedItem()==null)
     {
         messageErreur="Sport invalide";
     }
-    if(cmb_ChoixSalle.getSelectionModel().getSelectedItem()==null)
+    if(cmb_ChoixSport.getSelectionModel().getSelectedItem()==null)
     {
         messageErreur="Salle invalide";
     }
     if(messageErreur.length()>0)
     {
           Alert al = new Alert(Alert.AlertType.INFORMATION);
-        al.setTitle("INSERTION REUSSIE");
-        al.setHeaderText("une insertion et deux maj effectuées");
+        al.setTitle("erreur");
+        al.setHeaderText("erreur");
         al.setContentText(messageErreur);
         al.showAndWait();
     retour=false;

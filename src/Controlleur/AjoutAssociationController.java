@@ -47,6 +47,8 @@ public class AjoutAssociationController implements Initializable {
           UneAssociation=new Association(refAsso.getText(), Ville.getText(), Adresse.getText(), nomresponsable.getText());
           okClick=true;
           sql.insererAssociation(UneAssociation);
+          Stage stage = (Stage) ButtonAjout.getScene().getWindow();
+          stage.close();
       }
     }
     private boolean isInputValid() {

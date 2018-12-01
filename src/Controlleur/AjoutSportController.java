@@ -66,8 +66,8 @@ public class AjoutSportController implements Initializable {
     if(messageErreur.length()>0)
     {
           Alert al = new Alert(Alert.AlertType.INFORMATION);
-        al.setTitle("INSERTION REUSSIE");
-        al.setHeaderText("une insertion et deux maj effectuées");
+        al.setTitle("Erreur");
+        al.setHeaderText("Erreur");
         al.setContentText(messageErreur);
         al.showAndWait();
     retour=false;

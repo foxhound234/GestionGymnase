@@ -87,6 +87,7 @@ public class Gestionsql {
         }
         return lesSports;
     }
+     
       public static ObservableList<Salle> getLesSalles()
     {
         Connection conn;
@@ -112,6 +113,32 @@ public class Gestionsql {
             System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
         }
         return lesSalles;
+    }
+        public static ObservableList<Association> getLesAssociations()
+    {
+        Connection conn;
+        Statement stmt1;
+        Association  uneAssociation;
+        ObservableList<Association> lesAssociations = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "select * from association";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+                uneAssociation= new Association(rs.getString("refAsso"),rs.getString("ville"),rs.getString("adresse"),rs.getString("nomResponsable"));
+               lesAssociations.add(uneAssociation);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+        return lesAssociations;
     }
     }
 

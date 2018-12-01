@@ -53,5 +53,9 @@ public class Association {
     public void setNomResponsable(String nomResponsable) {
         this.nomResponsable = nomResponsable;
     }
-    
+        public String toString()
+    {
+        return String.valueOf(refAsso);
+    }
+     
 }

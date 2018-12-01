@@ -65,4 +65,24 @@ public class AccueilController implements Initializable {
             System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
         }
     }
+      @FXML
+        public void HandleAjouterAssociations()
+    {
+        try
+        {
+            StageSport= new Stage();
+            StageSport.setTitle("Confirmation de l'inscription à la session de formation");
+            FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutAssociation.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            StageSport.setScene(scene);
+            StageSport.show();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
+        }
+    }
+          
+        
 }

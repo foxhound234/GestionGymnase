@@ -5,8 +5,7 @@
  */
 package Controlleur;
 
-import Modele.Gestionsql;
-import Modele.Sport;
+import Modele.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

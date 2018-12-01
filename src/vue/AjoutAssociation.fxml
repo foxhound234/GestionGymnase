@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.AjoutAssociationController">
+   <children>
+      <TextField fx:id="Ville" layoutX="138.0" layoutY="152.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField fx:id="Adresse" layoutX="132.0" layoutY="218.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField fx:id="refAsso" layoutX="131.0" layoutY="79.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField fx:id="nomresponsable" layoutX="131.0" layoutY="301.0" prefHeight="26.0" prefWidth="302.0" />
+      <Label layoutX="246.0" layoutY="43.0" text="RefAsso" />
+      <Label layoutX="256.0" layoutY="125.0" text="Ville" />
+      <Label layoutX="246.0" layoutY="191.0" text="Adresse" />
+      <Label layoutX="242.0" layoutY="266.0" text="Nomresponsable" />
+      <Button fx:id="ButtonAjout" layoutX="230.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="26.0" prefWidth="115.0" text="Ajouter" />
+   </children>
+</AnchorPane>

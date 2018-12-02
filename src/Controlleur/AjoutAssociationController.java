@@ -48,6 +48,11 @@ public class AjoutAssociationController implements Initializable {
           okClick=true;
           sql.insererAssociation(UneAssociation);
           Stage stage = (Stage) ButtonAjout.getScene().getWindow();
+                Alert ale = new Alert(Alert.AlertType.INFORMATION);
+        ale.setTitle("insertions");
+        ale.setHeaderText("insertions");
+        ale.setContentText("insertion reussi");
+        ale.showAndWait();
           stage.close();
       }
     }

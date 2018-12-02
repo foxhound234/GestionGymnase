@@ -60,7 +60,11 @@ public class AjoutSportSalleController implements Initializable {
           sql.insererAccueilir(UnSport.getNomSport(),Unesalle.getRefsalle());
           okClick=true;
              Stage stage = (Stage) ButtonAjout.getScene().getWindow();
-    // do what you have to do
+      Alert ale = new Alert(Alert.AlertType.INFORMATION);
+        ale.setTitle("insertions");
+        ale.setHeaderText("insertions");
+        ale.setContentText("insertion reussi");
+        ale.showAndWait();
     stage.close();
       }
     }

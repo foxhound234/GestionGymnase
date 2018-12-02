@@ -55,8 +55,13 @@ public class AjoutSportAssoController implements Initializable {
           sql.insererAccueilir(UnSport.getNomSport(),UneAssocation.getRefAsso());
           okClick=true;
              Stage stage = (Stage) ButtonAjout.getScene().getWindow();
-    // do what you have to do
-    stage.close();
+          sql.insererPratique(UnSport.getNomSport(),UneAssocation.getRefAsso());
+            Alert ale = new Alert(Alert.AlertType.INFORMATION);
+        ale.setTitle("insertions");
+        ale.setHeaderText("insertions");
+        ale.setContentText("insertion reussi");
+        ale.showAndWait();
+        stage.close();
       }
     }
      private boolean isInputValid() {

@@ -35,7 +35,7 @@ public class AccueilController implements Initializable {
         try
         {
             StageSport= new Stage();
-            StageSport.setTitle("Confirmation de l'inscription à la session de formation");
+            StageSport.setTitle("ajouter un sport");
             FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutSport.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
@@ -53,7 +53,7 @@ public class AccueilController implements Initializable {
         try
         {
             StageSport= new Stage();
-            StageSport.setTitle("Confirmation de l'inscription à la session de formation");
+            StageSport.setTitle(" Ajouter Un sport a une salle");
             FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutSportSalle.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
@@ -71,7 +71,7 @@ public class AccueilController implements Initializable {
         try
         {
             StageSport= new Stage();
-            StageSport.setTitle("Confirmation de l'inscription à la session de formation");
+            StageSport.setTitle("Ajouter Une Associations");
             FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutAssociation.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
@@ -90,7 +90,7 @@ public class AccueilController implements Initializable {
         try
         {
             StageSport= new Stage();
-            StageSport.setTitle("Confirmation de l'inscription à la session de formation");
+            StageSport.setTitle("Ajouter Un  sport a une associations");
             FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutSportAsso.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
@@ -102,5 +102,25 @@ public class AccueilController implements Initializable {
             System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
         }
     }
+       
+                @FXML
+        public void HandleAjouterSalle()
+    {
+        try
+        {
+            StageSport= new Stage();
+            StageSport.setTitle("Ajouter Une salle");
+            FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/AjoutSalle.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            StageSport.setScene(scene);
+            StageSport.show();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
+        }
+    }
+        
             
 }

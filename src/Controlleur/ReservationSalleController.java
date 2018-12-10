@@ -27,16 +27,16 @@ public class ReservationSalleController implements Initializable {
         
     /**
      * Initializes the controller class.
+     * @param rb
      */
-   @Override
-    public void initialize(URL url, ResourceBundle rb)
+      
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
     {
-        //Initialisation du ComboBox cmb_ChoixMatricule
         ObservableList<Association> lesAsssociations = Gestionsql.getLesAssociations();
         cmb_choixAssociation.setItems(lesAsssociations);
         
         
-        // Ecoute sur le changement d'item du TableView
        cmb_choixAssociation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Association>()
         {
             @Override
@@ -54,8 +54,9 @@ public class ReservationSalleController implements Initializable {
             }
         });
         
-    }    
-}
+    }
+    }
+  }
 
 
 

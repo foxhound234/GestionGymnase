@@ -17,6 +17,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Salle">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#HandleReservationSalle" text="Réserver" />
               <MenuItem mnemonicParsing="false" onAction="#HandleAjouterSalle" text="Ajouter" />
             </items>
           </Menu>

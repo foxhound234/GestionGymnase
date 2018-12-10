@@ -5,9 +5,14 @@
  */
 package Controlleur;
 
+import Modele.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -15,13 +20,43 @@ import javafx.fxml.Initializable;
  * @author morga
  */
 public class ReservationSalleController implements Initializable {
-
+    Gestionsql sql=new Gestionsql();
+        ComboBox cmb_choixAssociation;
+        ComboBox cmb_choixSport;
+        ComboBox cmb_choixSalle;
+        
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+   @Override
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        //Initialisation du ComboBox cmb_ChoixMatricule
+        ObservableList<Association> lesAsssociations = Gestionsql.getLesAssociations();
+        cmb_choixAssociation.setItems(lesAsssociations);
+        
+        
+        // Ecoute sur le changement d'item du TableView
+       cmb_choixAssociation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Association>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Association> observable, Association oldValue,Association newValue)
+            {
+                // Si une ligne sélectionnée alors
+                if (newValue == null)
+                {
+                    cmb_choixSport.setVisible(false);
+                }
+                else
+                {
+                    cmb_choixSport.setVisible(true);
+                }
+            }
+        });
+        
     }    
-    
 }
+
+
+
+

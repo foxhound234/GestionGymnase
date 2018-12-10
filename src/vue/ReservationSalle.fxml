@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controlleur.ReservationSalleController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.ReservationSalleController">
    <children>
       <GridPane prefHeight="400.0" prefWidth="220.0">
         <columnConstraints>
@@ -21,9 +20,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <ComboBox layoutX="351.0" layoutY="35.0" prefHeight="26.0" prefWidth="183.0" />
-      <ComboBox layoutX="351.0" layoutY="115.0" prefHeight="26.0" prefWidth="190.0" />
-      <ComboBox layoutX="351.0" layoutY="188.0" prefHeight="26.0" prefWidth="190.0" />
+      <ComboBox fx:id="cmb_choixAssociation" layoutX="351.0" layoutY="35.0" prefHeight="26.0" prefWidth="183.0" />
+      <ComboBox fx:id="cmb_choixSport" layoutX="351.0" layoutY="115.0" prefHeight="26.0" prefWidth="190.0" />
+      <ComboBox fx:id="cmb_choixSalle" layoutX="351.0" layoutY="188.0" prefHeight="26.0" prefWidth="190.0" />
       <Label layoutX="376.0" layoutY="14.0" text="Associations" />
       <Label layoutX="376.0" layoutY="83.0" text="Sport" />
       <Label layoutX="376.0" layoutY="161.0" text="Salle" />

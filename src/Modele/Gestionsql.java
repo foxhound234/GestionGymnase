@@ -117,7 +117,36 @@ public class Gestionsql {
         }
         return lesSports;
     }
-     
+     public static ObservableList<Sport>GetLesSports(Association uneAssociation)
+     {
+          Connection conn;
+        Statement stmt1;
+        Sport sport;
+        ObservableList<Sport> lesSports = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "select s.nomsport\n" +
+                        "from  sport s,pratiquer p\n" +
+                        "where p.nomsport=s.nomsport\n" +
+                        "and refAsso='"+uneAssociation.getRefAsso()+"'";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+                sport= new Sport(rs.getString("nomSport"));
+               lesSports.add(sport);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+        return lesSports;
+         
+     }
       public static ObservableList<Salle> getLesSalles()
     {
         Connection conn;
@@ -144,6 +173,36 @@ public class Gestionsql {
         }
         return lesSalles;
     }
+       public static ObservableList<Salle> getLesSalles(Sport UnSport)
+    {
+        Connection conn;
+        Statement stmt1;
+        Salle salle;
+        ObservableList<Salle> lesSalles = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "select s.refSalle,surface,typeRevetement\n" +
+                          "from salle s,accueillir a\n" +
+                        "where s.refSalle=a.refSalle\n" +
+                        "and nomSportAutorise='"+UnSport.getNomSport()+"'";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+                salle= new Salle(rs.getString("refSalle"),rs.getString("typeRevetement"),rs.getInt("surface"));
+               lesSalles.add(salle);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+        return lesSalles;
+    }
+      
         public static ObservableList<Association> getLesAssociations()
     {
         Connection conn;
@@ -170,5 +229,6 @@ public class Gestionsql {
         }
         return lesAssociations;
     }
+        
     }
 

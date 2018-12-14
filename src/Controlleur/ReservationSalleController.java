@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +34,11 @@ public class ReservationSalleController implements Initializable {
          DatePicker   DateReservation;
                @FXML
          GridPane TabReservation;
+         ObservableList<String> lesHoraires=FXCollections.observableArrayList();
         
+         
+         
+         
     /**
      * Initializes the controller class.
      * @param rb

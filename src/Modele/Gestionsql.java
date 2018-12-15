@@ -5,6 +5,7 @@
  */
 package Modele;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -229,6 +230,37 @@ public class Gestionsql {
         }
         return lesAssociations;
     }
+          public static ObservableList<reservation> getLesReservation(Date  Unedate,String  Refsalle)
+          {
+              Connection conn;
+        Statement stmt1;
+        reservation  uneReservation;
+        ObservableList<reservation> lesReservations = FXCollections.observableArrayList();
+        try
+        {
+
+           stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "SELECT * \n" +
+                        "FROM reservation \n" +
+                        "WHERE \n" +
+                        "refSalle='"+ Refsalle+"'\n" +
+                        "and date='"+Unedate+"'";
+            
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+               uneReservation= new reservation(rs.getString("refSalle"),rs.getDate("date"),rs.getString("heure"),rs.getString("refAsso"));
+               lesReservations.add(uneReservation);
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
+        }
+              return lesReservations;
+          }
         
     }
 

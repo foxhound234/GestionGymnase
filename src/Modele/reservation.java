@@ -15,14 +15,16 @@ import java.sql.Date;
 public class reservation {
     private  String  Refsalle,refAsso;
     private Date  date;
-    private Integer heure;
+    private String heure;
 
-    public reservation(String Refsalle, String refAsso, Date date, Integer heure) {
+    public reservation(String Refsalle,Date date, String heure,String refAsso) {
         this.Refsalle = Refsalle;
         this.refAsso = refAsso;
         this.date = date;
         this.heure = heure;
     }
+
+  
 
     public String getRefsalle() {
         return Refsalle;
@@ -48,13 +50,14 @@ public class reservation {
         this.date = date;
     }
 
-    public Integer getHeure() {
+    public String getHeure() {
         return heure;
     }
 
-    public void setHeure(Integer heure) {
+    public void setHeure(String heure) {
         this.heure = heure;
     }
-    
+
+ 
     
 }

@@ -7,8 +7,9 @@ package Controlleur;
 
 import Modele.*;
 import java.net.URL;
-import java.sql.Date;
-import java.time.*;
+import java.text.SimpleDateFormat;  
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -18,17 +19,20 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javafx.scene.layout.GridPane;;
+import java.util.*;
+import java.sql.Date;
+import java.util.logging.Logger;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
  * @author morga
  */
 public class ReservationSalleController implements Initializable {
+    @FXML private AnchorPane ap;
     Gestionsql sql=new Gestionsql();
             @FXML
         ComboBox cmb_choixAssociation;
@@ -40,11 +44,11 @@ public class ReservationSalleController implements Initializable {
          DatePicker   DateReservation;
                @FXML
          GridPane TabReservation;
+                   String date;
                String[] str = {"8h-9h","9h-10h","11h-12h","13h-14h","14h-15h","16h-17h","18h-19h","19h-20h","21h-22h"};
-          ArrayList PlageHoraires = new ArrayList<>(Arrays.asList(str));;
-  
+          ArrayList PlageHoraires = new ArrayList<>(Arrays.asList(str));
          ObservableList<String> lesHoraires=FXCollections.observableArrayList(PlageHoraires);
-         
+            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
   public Label getNodeByRowColumnIndex( final int row, final int column, GridPane gridPane) 
 {
 
@@ -53,22 +57,11 @@ public class ReservationSalleController implements Initializable {
 
    return result;
 }
-         
-     private String zzzzz(final int row, final int column,GridPane gridPane) {
-     String result="";
-    ObservableList<javafx.scene.Node> children = gridPane.getChildren();
-
-    for (javafx.scene.Node node : children) {
-        if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
-            result=String.valueOf(node);
-            
-            break;
-        }
-    }
-
-    return result;
-}
- 
+  public Date getdatevalue() throws ParseException
+  {
+         java.sql.Date sqlDate =java.sql.Date.valueOf(DateReservation.getValue());
+      return sqlDate;
+  }
     /**
      * Initializes the controller class.
      * @param url
@@ -107,13 +100,6 @@ public class ReservationSalleController implements Initializable {
                            Association uneAsso=(Association)cmb_choixAssociation.getSelectionModel().getSelectedItem();
                      ObservableList<Sport>  LesSports= Gestionsql.GetLesSports(uneAsso);
                          cmb_choixSport.setItems(LesSports); 
-                
-               String stqt=getNodeByRowColumnIndex(0,0,TabReservation).getText();
-                     Alert ale = new Alert(Alert.AlertType.INFORMATION);
-                 ale.setTitle("insertions");
-                 ale.setHeaderText(stqt);
-             ale.setContentText(stqt);
-                ale.showAndWait();
                 }
              
             }
@@ -144,8 +130,8 @@ public class ReservationSalleController implements Initializable {
 
       
       
-      
-      
+        
+                
              cmb_choixSalle.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Salle>()
                  {
             @Override
@@ -154,59 +140,77 @@ public class ReservationSalleController implements Initializable {
                 // Si une ligne sélectionnée alors
                 if (newValue == null)
                 {
-                     
+                        DateReservation.setVisible(false); 
                 }
                 else
                 {
-                    Salle uneSalle=(Salle)cmb_choixSalle.getSelectionModel().getSelectedItem();
-                   LocalDate localDate = DateReservation.getValue();
-                   Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-                      Date date = (Date) Date.from(instant);
-                  ObservableList<reservation> lesRevervations=Gestionsql.getLesReservation(date,uneSalle.getRefsalle());
+                 DateReservation.setVisible(true);
+                }
+            };        
+            
+         });  
+
+         }
+                 public void handledate()throws ParseException
+               {
+                   
+                                 Date date1=getdatevalue();
+                                Salle uneSalle=(Salle) cmb_choixSalle.getSelectionModel().getSelectedItem();
+                            
+                     
+                     ObservableList<reservation>  LesRevervations= Gestionsql.getLesReservation(date1,uneSalle.getRefsalle());
+                      if(LesRevervations.isEmpty())
+                      {
                          for(int i=0;i<9;i++)
-                {
-             
-                          String stqt=getNodeByRowColumnIndex(0,i,TabReservation).getText();
-                          
-                          if(lesRevervations.get(i).getHeure()==stqt)
+                              {
+                        String plageHoraire=getNodeByRowColumnIndex(0,i,TabReservation).getText();
+                            Button b = new Button();
+                                 b.setText("Reservé");
+                                 b.setOnMouseClicked( event -> {
+                                         handleReservation(plageHoraire,date1);});
+                                TabReservation.add(b, 1, i);
+                                
+                             }   
+                      }
+                     else if(LesRevervations.size()==9)
                           {
                               
+                              
+                              
                           }
+                      else{
+                         
+                         for(int i=LesRevervations.size();i<9;i++)
+                         {
+                              String plageHoraire=getNodeByRowColumnIndex(0,i,TabReservation).getText();
+                                 Button b = new Button();
+                                 b.setText("Reservé");
+                                   b.setOnMouseClicked( event -> {handleReservation(plageHoraire,date1);});
+                                TabReservation.add(b, 1, i);  
+                         }
+                                  
+                         }
                 }
-                        
-                     
-                }
-            };       
-                     
-         });  
-         
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
+                 
+            public void handleReservation(String heure,Date Date1) 
+            {
+               Salle uneSalle=(Salle) cmb_choixSalle.getSelectionModel().getSelectedItem();
+               Association uneAsso=(Association) cmb_choixAssociation.getSelectionModel().getSelectedItem();
+            Gestionsql.InsertLesReservation(uneSalle.getRefsalle(),Date1,heure,uneAsso.getRefAsso());
+            
+          Stage stage = (Stage) ap.getScene().getWindow();
+                Alert ale = new Alert(Alert.AlertType.INFORMATION);
+        ale.setTitle("insertions");
+        ale.setHeaderText("insertions");
+        ale.setContentText("insertion reussi");
+        ale.showAndWait();
+          stage.close();
+            }
     }
+
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+
 
 
 

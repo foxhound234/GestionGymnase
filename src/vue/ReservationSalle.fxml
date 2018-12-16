@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.ReservationSalleController">
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.ReservationSalleController">
    <children>
       <GridPane fx:id="TabReservation" prefHeight="400.0" prefWidth="220.0">
         <columnConstraints>
@@ -35,6 +35,6 @@
       <Label layoutX="376.0" layoutY="14.0" text="Associations" />
       <Label layoutX="376.0" layoutY="83.0" text="Sport" />
       <Label layoutX="376.0" layoutY="161.0" text="Salle" />
-      <DatePicker fx:id="DateReservation" layoutX="344.0" layoutY="243.0" prefHeight="26.0" prefWidth="210.0" />
+      <DatePicker fx:id="DateReservation" layoutX="344.0" layoutY="243.0" onAction="#handledate" prefHeight="26.0" prefWidth="210.0" />
    </children>
 </AnchorPane>

@@ -5,7 +5,7 @@
  */
 package Modele;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -260,6 +260,23 @@ public class Gestionsql {
             System.out.println("Erreur SQL requete getLesClients : " + se.getMessage());
         }
               return lesReservations;
+          }
+            public static void InsertLesReservation(String refSalle,Date date,String plageheure,String refAsso)
+          {
+              Connection conn;
+        Statement stmt1;
+     try{
+        stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+        // Liste des clients qui "ont un plan de formation"
+        String req = "INSERT INTO `reservation`(`refSalle`, `date`, `heure`, `refAsso`) VALUES ('"+refSalle+"','"+date+"','"+plageheure+"','"+refAsso+"')";
+        ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+         int nb1 = GestionBdd.envoiRequeteLID(stmt1, req); 
+        }   
+     catch(Exception e)
+        {
+            System.out.println("Erreur requete3 " + e.getMessage());
+        }   
+        
           }
         
     }

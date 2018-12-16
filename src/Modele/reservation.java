@@ -24,6 +24,10 @@ public class reservation {
         this.heure = heure;
     }
 
+    reservation(String string, int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
     public String getRefsalle() {

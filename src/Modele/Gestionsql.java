@@ -261,6 +261,8 @@ public class Gestionsql {
         }
               return lesReservations;
           }
+          
+          
             public static void InsertLesReservation(String refSalle,Date date,String plageheure,String refAsso)
           {
               Connection conn;
@@ -278,6 +280,37 @@ public class Gestionsql {
         }   
         
           }
+            
+               public static ObservableList<Statistique> LesReservationstat(String refSalle)
+          {
+            Statistique  stat;
+        Statement stmt1;
+        ObservableList<Statistique> lesStatistiques = FXCollections.observableArrayList();
+     try{
+        // Liste des clients qui "ont un plan de formation"
+        stmt1 = GestionBdd.connexionBdd(GestionBdd.TYPE_MYSQL, "gymnase","localhost", "root","");
+            
+            // Liste des clients qui "ont un plan de formation"
+            String req = "SELECT heure,count(heure) as Lesheures\n" +
+                            "FROM reservation\n" +
+                                "where\n" +
+                            "refSalle='"+refSalle+"'\n" +
+                              "group by refSalle";
+            ResultSet rs = GestionBdd.envoiRequeteLMD(stmt1,req);
+            while (rs.next())
+            {
+               stat= new Statistique (rs.getString("heure"),rs.getInt("Lesheures"));
+              lesStatistiques.add(stat);
+            }
+        }   
+     catch(Exception e)
+        {
+            System.out.println("Erreur requete3 " + e.getMessage());
+        }   
+        
+     return lesStatistiques;
+          }
+             
         
     }
 

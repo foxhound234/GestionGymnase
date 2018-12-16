@@ -27,6 +27,11 @@
               <MenuItem mnemonicParsing="false" onAction="#HandleAjouterAssociations" text="Ajouter" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Générer">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#HandleGénerésStat" text="Statistique occupation" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </children>

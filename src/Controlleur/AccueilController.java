@@ -139,6 +139,23 @@ public class AccueilController implements Initializable {
             System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
         }  
       }
-
+  @FXML
+      public void HandleGénerésStat()
+      {
+           try
+        {
+            StageSport= new Stage();
+            StageSport.setTitle("Statiques Une salle");
+            FXMLLoader loader = new FXMLLoader(Mainapp.class.getResource("/vue/StatistiqueSalle.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            StageSport.setScene(scene);
+            StageSport.show();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Erreur chargement seconde fenetre : " + e.getMessage());
+        }  
+      }
             
 }

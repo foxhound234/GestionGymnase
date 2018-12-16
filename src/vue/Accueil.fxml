@@ -30,6 +30,7 @@
             <Menu mnemonicParsing="false" text="Générer">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#HandleGénerésStat" text="Statistique occupation" />
+                  <MenuItem mnemonicParsing="false" text="Générés pdf occupation" />
               </items>
             </Menu>
         </menus>

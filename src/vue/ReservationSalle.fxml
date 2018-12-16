@@ -31,7 +31,7 @@
       </GridPane>
       <ComboBox fx:id="cmb_choixAssociation" layoutX="351.0" layoutY="35.0" prefHeight="26.0" prefWidth="183.0" />
       <ComboBox fx:id="cmb_choixSport" layoutX="351.0" layoutY="115.0" prefHeight="26.0" prefWidth="190.0" />
-      <ComboBox fx:id="cmb_choixSalle" layoutX="351.0" layoutY="188.0" prefHeight="26.0" prefWidth="190.0" />
+      <ComboBox fx:id="cmb_choixSalle" layoutX="351.0" layoutY="188.0" onAction="#handledate" prefHeight="26.0" prefWidth="190.0" />
       <Label layoutX="376.0" layoutY="14.0" text="Associations" />
       <Label layoutX="376.0" layoutY="83.0" text="Sport" />
       <Label layoutX="376.0" layoutY="161.0" text="Salle" />

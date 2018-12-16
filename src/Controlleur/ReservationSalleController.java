@@ -59,7 +59,16 @@ public class ReservationSalleController implements Initializable {
 }
   public Date getdatevalue() throws ParseException
   {
-         java.sql.Date sqlDate =java.sql.Date.valueOf(DateReservation.getValue());
+      java.sql.Date sqlDate=null;
+       if(DateReservation.getValue()==null)
+       {
+            sqlDate=null;  
+       }
+      else
+       {
+           
+       }
+         sqlDate =java.sql.Date.valueOf(DateReservation.getValue());
       return sqlDate;
   }
     /**
@@ -71,14 +80,7 @@ public class ReservationSalleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-         for(int i=0;i<9;i++)
-                {
-                    Label lab = new Label(lesHoraires.get(i));
-                         String test=String.valueOf(i);
-                         lab.setId(test);
-                         
-                       TabReservation.add(lab, 0, i);
-                }
+
        ObservableList<Association>  lesAssociations= Gestionsql.getLesAssociations();
        
        cmb_choixAssociation.setItems(lesAssociations);
@@ -152,9 +154,24 @@ public class ReservationSalleController implements Initializable {
 
          }
                  public void handledate()throws ParseException
+               {  
+                Date date1=getdatevalue();
+               if(date1==null)
                {
                    
-                                 Date date1=getdatevalue();
+               }
+               else
+               {
+                TabReservation.getChildren().clear();
+                    for(int i=0;i<9;i++)
+                {
+                    Label lab = new Label(lesHoraires.get(i));
+                         String test=String.valueOf(i);
+                         lab.setId(test);
+                         
+                       TabReservation.add(lab, 0, i);
+                }
+                      
                                 Salle uneSalle=(Salle) cmb_choixSalle.getSelectionModel().getSelectedItem();
                             
                      
@@ -189,7 +206,9 @@ public class ReservationSalleController implements Initializable {
                                 TabReservation.add(b, 1, i);  
                          }
                                   
-                         }
+                         }    
+               }
+                 
                 }
                  
             public void handleReservation(String heure,Date Date1) 

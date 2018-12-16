@@ -44,11 +44,18 @@ public class ReservationSalleController implements Initializable {
          DatePicker   DateReservation;
                @FXML
          GridPane TabReservation;
+               
                    String date;
+                   
                String[] str = {"8h-9h","9h-10h","11h-12h","13h-14h","14h-15h","16h-17h","18h-19h","19h-20h","21h-22h"};
+               
           ArrayList PlageHoraires = new ArrayList<>(Arrays.asList(str));
+          
          ObservableList<String> lesHoraires=FXCollections.observableArrayList(PlageHoraires);
-            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+
+         
+         
+         
   public Label getNodeByRowColumnIndex( final int row, final int column, GridPane gridPane) 
 {
 
@@ -66,9 +73,8 @@ public class ReservationSalleController implements Initializable {
        }
       else
        {
-           
+         sqlDate =java.sql.Date.valueOf(DateReservation.getValue());  
        }
-         sqlDate =java.sql.Date.valueOf(DateReservation.getValue());
       return sqlDate;
   }
     /**

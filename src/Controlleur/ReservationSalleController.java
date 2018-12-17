@@ -207,20 +207,22 @@ public class ReservationSalleController implements Initializable {
                       {
                               
                        String montest="T";
-                        String plageHoraire=lesHoraires.get(i);
+                        String plageHoraire=getNodeByRowColumnIndex(0,i,TabReservation).getText();;
                            int test1=0;
                         for(int j=0;j<LesRevervations.size();j++)
                         {     
                           String est=LesRevervations.get(j).getHeure();
-                           System.out.println("est : " + est);
-                            if(est == plageHoraire)
+                            if(est.equals(plageHoraire))
                             {
                             test1=1;
                             
                              System.out.println("test dans le if else : " + plageHoraire);
                          
                                 break;
-                            }  
+                            } 
+                            else{
+                               test1=0; 
+                            }
                         }
                         
                         if(test1 == 0)

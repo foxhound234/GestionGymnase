@@ -52,7 +52,7 @@ public class ReservationSalleController implements Initializable {
           ArrayList PlageHoraires = new ArrayList<>(Arrays.asList(str));
           
          ObservableList<String> lesHoraires=FXCollections.observableArrayList(PlageHoraires);
-
+   boolean test=false;
          
          
          
@@ -159,6 +159,7 @@ public class ReservationSalleController implements Initializable {
          });  
 
          }
+    @SuppressWarnings("StringEquality")
                  public void handledate()throws ParseException
                {  
                 Date date1=getdatevalue();
@@ -202,15 +203,41 @@ public class ReservationSalleController implements Initializable {
                               
                           }
                       else{
+                    for(int i=0;i<lesHoraires.size();i++)
+                      {
+                              
+                       String montest="T";
+                        String plageHoraire=lesHoraires.get(i);
+                           int test1=0;
+                        for(int j=0;j<LesRevervations.size();j++)
+                        {     
+                          String est=LesRevervations.get(j).getHeure();
+                           System.out.println("est : " + est);
+                            if(est == plageHoraire)
+                            {
+                            test1=1;
+                            
+                             System.out.println("test dans le if else : " + plageHoraire);
                          
-                         for(int i=LesRevervations.size();i<9;i++)
-                         {
-                              String plageHoraire=getNodeByRowColumnIndex(0,i,TabReservation).getText();
-                                 Button b = new Button();
+                                break;
+                            }  
+                        }
+                        
+                        if(test1 == 0)
+                        {
+                             Button b = new Button();
                                  b.setText("Reservé");
-                                   b.setOnMouseClicked( event -> {handleReservation(plageHoraire,date1);});
-                                TabReservation.add(b, 1, i);  
-                         }
+                                 b.setOnMouseClicked( event -> {
+                                         handleReservation(plageHoraire,date1);});
+                                TabReservation.add(b, 1, i); 
+            
+                        }else
+                        {
+                       
+                        }
+                 
+                                
+                    }   
                                   
                          }    
                }
